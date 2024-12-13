@@ -1,8 +1,276 @@
-const Shop = () => {
+import React, { useEffect, useState } from "react";
+import { filter, orderBy } from "lodash";
+import Box from '@mui/material/Box'
+import Button from '@mui/material/Button'
+import CardContent from '@mui/material/CardContent'
+import Fab from '@mui/material/Fab'
+import Grid from '@mui/material/Grid'
+import Rating from '@mui/material/Rating'
+import Skeleton from '@mui/material/Skeleton'
+import Stack from '@mui/material/Stack'
+import { Theme } from '@mui/material/styles';
+import Tooltip from '@mui/material/Tooltip'
+import Typography from '@mui/material/Typography'
+import useMediaQuery from '@mui/material/useMediaQuery'
+import { Link } from "react-router-dom";
+import ProductSearch from "./ProductSearch";
+import { IconBasket, IconMenu2 } from "@tabler/icons-react";
+import AlertCart from "./AlertCart";
+// import emptyCart from "/public/images/products/empty-shopping-cart.svg";
+import BlankCard from "./BlankCard";
+import { ProductType } from "./Types";
+// import Image from "next/image";
+// import axios from "../apiMock/axios";
+import ProductsData  from '../api/ProductsData'
+
+
+interface Props {
+  onClick: (event: React.SyntheticEvent | Event) => void;
+}
+
+const Shop = ({ onClick }: Props) => {
+  const [products, setProducts] = useState<ProductType[]>(ProductsData);
+  const [isLoading, setLoading] = useState(true);
+  const [cartalert, setCartalert] = useState(false);
+  const [filters, setFilters] = useState({
+    category: "All",
+    gender: "All",
+    color: "All",
+    price: "All"
+  });
+  const [sortBy, setSortBy] = useState("newest");
+  const [search, setSearch] = useState("");
+
+  // const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up("lg"));
+  const lgUp = true;
+
+  // useEffect(() => {
+  //   const fetchProducts = async () => {
+  //     try {
+  //       const response = await axios.get("/api/products");
+  //       setProducts(response.data);
+  //     } catch (error) {
+  //       console.error("Error fetching products:", error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchProducts();
+  // }, []);
+
+  // const getVisibleProduct = (
+  //   products: ProductType[],
+  //   sortBy: string,
+  //   filters: unknown,
+  //   search: string
+  // ) => {
+  //   // SORT BY
+  //   if (sortBy === "newest") {
+  //     products = orderBy(products, ["created"], ["desc"]);
+  //   }
+  //   if (sortBy === "priceDesc") {
+  //     products = orderBy(products, ["price"], ["desc"]);
+  //   }
+  //   if (sortBy === "priceAsc") {
+  //     products = orderBy(products, ["price"], ["asc"]);
+  //   }
+  //   if (sortBy === "discount") {
+  //     products = orderBy(products, ["discount"], ["desc"]);
+  //   }
+
+  //   // FILTER PRODUCTS
+  //   if (filters.category !== "All") {
+  //     products = products.filter((_product) =>
+  //       _product.category.includes(filters.category)
+  //     );
+  //   }
+
+  //   //FILTER PRODUCTS BY GENDER
+  //   if (filters.gender !== "All") {
+  //     products = filter(
+  //       products,
+  //       (_product) => _product.gender === filters.gender
+  //     );
+  //   }
+
+  //   //FILTER PRODUCTS BY COLOR
+  //   if (filters.color !== "All") {
+  //     products = products.filter((_product) =>
+  //       _product.colors.includes(filters.color)
+  //     );
+  //   }
+
+  //   //FILTER PRODUCTS BY Search
+  //   if (search !== "") {
+  //     products = products.filter((_product) =>
+  //       _product.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())
+  //     );
+  //   }
+
+  //   //FILTER PRODUCTS BY Price
+  //   if (filters.price !== "All") {
+  //     const minMax = filters.price ? filters.price.split("-") : "";
+  //     products = products.filter((_product) =>
+  //       filters.price
+  //         ? _product.price >= minMax[0] && _product.price <= minMax[1]
+  //         : true
+  //     );
+  //   }
+
+  //   return products;
+  // };
+
+  // const visibleProducts = getVisibleProduct(products, sortBy, filters, search);
+
+  const handleClick = () => {
+    setCartalert(true);
+  };
+
+  const handleClose = (event: unknown) => {
+    if (event === "clickaway") {
+      return;
+    }
+    setCartalert(false);
+  };
+
+  const addToCart = (product: ProductType) => {
+    // Add product to cart logic here
+    handleClick();
+  };
+
   return (
-    <div className="flex-1 p-12 pt-[8rem]">
-      <h1>Shop</h1>
-    </div>
+    <Box p={3} flexGrow={1}>
+      <Box>
+      {/* ------------------------------------------- */}
+      {/* Header Detail page */}
+      {/* ------------------------------------------- */}
+      <Stack direction="row" justifyContent="space-between" pb={3} position="sticky" top={100} zIndex={1} bgcolor="background.paper">
+        {lgUp ? (
+          <Typography variant="h5">Products</Typography>
+        ) : (
+          <Fab onClick={onClick} color="primary" size="small">
+        <IconMenu2 width="16" />
+          </Fab>
+        )}
+        <Box>
+          <ProductSearch />
+        </Box>
+      </Stack>
+
+      {/* ------------------------------------------- */}
+      {/* Page Listing product */}
+      {/* ------------------------------------------- */}
+      <Grid container spacing={3}>
+        {products.length > 0 ? (
+          <>
+            {products.map((product) => (
+              <Grid
+                item
+                xs={12}
+                lg={4}
+                md={4}
+                sm={6}
+                display="flex"
+                alignItems="stretch"
+                key={product.id}
+              >
+                {/* ------------------------------------------- */}
+                {/* Product Card */}
+                {/* ------------------------------------------- */}
+                {isLoading ? (
+                  <>
+                    <Skeleton
+                      variant="rectangular"
+                      width={270}
+                      height={300}
+                      sx={{
+                        borderRadius: (theme) => theme.shape.borderRadius / 5,
+                      }}
+                    ></Skeleton>
+                  </>
+                ) : (
+                  <BlankCard className="hoverCard">
+                    <Typography
+                      component={Link}
+                      to={`/shop/product/${product.id}`}
+                    >
+                      <img src={product.photo} alt="img" width={250} height={268} style={{ width: "100%" }} />
+                    </Typography>
+                    <Tooltip title="Add To Cart">
+                      <Fab
+                        size="small"
+                        color="primary"
+                        onClick={() => addToCart(product)}
+                        sx={{
+                          bottom: "75px",
+                          right: "15px",
+                          position: "absolute",
+                        }}
+                      >
+                        <IconBasket size="16" />
+                      </Fab>
+                    </Tooltip>
+                    <CardContent sx={{ p: 3, pt: 2 }}>
+                      <Typography variant="h6">{product.title}</Typography>
+                      <Stack
+                        direction="row"
+                        alignItems="center"
+                        justifyContent="space-between"
+                        mt={1}
+                      >
+                        <Stack direction="row" alignItems="center">
+                          <Typography variant="h6">${product.price}</Typography>
+                          <Typography
+                            color="textSecondary"
+                            ml={1}
+                            sx={{ textDecoration: "line-through" }}
+                          >
+                            ${product.salesPrice}
+                          </Typography>
+                        </Stack>
+                        <Rating
+                          name="read-only"
+                          size="small"
+                          value={product.rating}
+                          readOnly
+                        />
+                      </Stack>
+                    </CardContent>
+                  </BlankCard>
+                )}
+                <AlertCart
+                  handleClose={handleClose}
+                  openCartAlert={cartalert}
+                />
+                {/* ------------------------------------------- */}
+                {/* Product Card */}
+                {/* ------------------------------------------- */}
+              </Grid>
+            ))}
+          </>
+        ) : (
+          <>
+            <Grid item xs={12} lg={12} md={12} sm={12}>
+              <Box textAlign="center" mt={6}>
+                <img src={'../assets/empty-shopping-cart.svg'} alt="cart" width={200} />
+                <Typography variant="h2">There is no Product</Typography>
+                <Typography variant="h6" mb={3}>
+                  The Product you are searching is no longer available.
+                </Typography>
+                <Button
+                  variant="contained"
+                  onClick={() => {}}
+                >
+                  Try Again
+                </Button>
+              </Box>
+            </Grid>
+          </>
+        )}
+      </Grid>
+    </Box>
+    </Box>
   )
 }
 

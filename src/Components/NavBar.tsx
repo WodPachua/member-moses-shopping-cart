@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import Logo from '../assets/logomymy.png';
-import Cart from '../assets/cart.svg';
+import { ShoppingCart } from '@mui/icons-material';
+import { Badge } from '@mui/material';
 
 // const Cart = '../assets/cart.svg';
 
@@ -27,14 +28,9 @@ const NavBar: React.FC<NavBarProps> = ({ toggleCart }) => {
           FAQs
         </NavLink>
       </nav>
-      <div className='flex gap-6 items-center'>
-        <div className='relative' onClick={toggleCart}>
-          <img src={Cart} alt="Cart" className='transform -translate-y-1 cursor-pointer'/>
-          <div className='absolute top-[-7px] right-[-17px] w-6 h-6 rounded-full bg-[#3D5B59] flex justify-center items-center text-white font-bold'>
-            {2}
-          </div>
-        </div>
-      </div>
+      <Badge badgeContent={4} color="secondary" onClick={toggleCart}>
+        <ShoppingCart color="action" sx={{ color: '#B99095', '&:hover': { color: '#a3777c' }, fontSize: 30 }} className='transform -translate-y-1 cursor-pointer'/>
+      </Badge>
     </header>
   );
 };
