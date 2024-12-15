@@ -23,7 +23,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   const theme = useTheme();
 
   const [scolor, setScolor] = useState(product ? product.colors[0] : "");
-  const setColor = (e) => {
+  const setColor = (e: React.SetStateAction<string>) => {
     setScolor(e);
   };
 
@@ -34,7 +34,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
     setCartalert(true);
   };
 
-  const handleClose = (reason) => {
+  const handleClose = (reason: unknown) => {
     if (reason === "clickaway") {
       return;
     }

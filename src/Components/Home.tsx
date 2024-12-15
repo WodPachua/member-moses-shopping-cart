@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import IMG1 from '/images/products/s1.jpg'
+import Grid from '@mui/material/Grid';
+import Trending from './Trending';
 
 const Home = () => {
   return (
@@ -25,6 +27,9 @@ const Home = () => {
           </Link>
         </div>
       </div>
+      <Grid item xs={12} sm={12} lg={12}>
+          <Trending />
+      </Grid>
     </main>
   )
 }
