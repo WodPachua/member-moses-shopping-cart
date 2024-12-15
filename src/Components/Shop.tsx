@@ -157,6 +157,10 @@ const Shop = ({ onClick, productsData }: Props) => {
   //   handleClick();
   // };
 
+  const handleClick = () => {
+    setCartalert(true);
+  };
+
   return (
     <Box p={3} flexGrow={1}>
       <Box>
@@ -241,7 +245,7 @@ const Shop = ({ onClick, productsData }: Props) => {
                           position: "absolute",
                         }}
                       >
-                        <IconBasket size="16" />
+                        <IconBasket size="16" onClick={handleClick}/>
                       </Fab>
                     </Tooltip>
                     <CardContent sx={{ p: 3, pt: 2 }}>
