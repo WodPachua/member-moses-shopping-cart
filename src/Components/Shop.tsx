@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { filter, orderBy } from "lodash";
+import React, { useState } from "react";
+// import { filter, orderBy } from "lodash";
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import CardContent from '@mui/material/CardContent'
@@ -8,10 +8,10 @@ import Grid from '@mui/material/Grid'
 import Rating from '@mui/material/Rating'
 import Skeleton from '@mui/material/Skeleton'
 import Stack from '@mui/material/Stack'
-import { Theme } from '@mui/material/styles';
+// import { Theme } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
-import useMediaQuery from '@mui/material/useMediaQuery'
+// import useMediaQuery from '@mui/material/useMediaQuery'
 import { Link } from "react-router-dom";
 import ProductSearch from "./ProductSearch";
 import { IconBasket, IconMenu2 } from "@tabler/icons-react";
@@ -22,6 +22,8 @@ import { ProductType } from "./Types";
 // import Image from "next/image";
 // import axios from "../apiMock/axios";
 import ProductsData  from '../api/ProductsData'
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 
 interface Props {
@@ -30,16 +32,16 @@ interface Props {
 
 const Shop = ({ onClick }: Props) => {
   const [products, setProducts] = useState<ProductType[]>(ProductsData);
-  const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(false);
   const [cartalert, setCartalert] = useState(false);
-  const [filters, setFilters] = useState({
-    category: "All",
-    gender: "All",
-    color: "All",
-    price: "All"
-  });
-  const [sortBy, setSortBy] = useState("newest");
-  const [search, setSearch] = useState("");
+  // const [filters, setFilters] = useState({
+  //   category: "All",
+  //   gender: "All",
+  //   color: "All",
+  //   price: "All"
+  // });
+  // const [sortBy, setSortBy] = useState("newest");
+  // const [search, setSearch] = useState("");
 
   // const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up("lg"));
   const lgUp = true;
@@ -123,21 +125,24 @@ const Shop = ({ onClick }: Props) => {
 
   // const visibleProducts = getVisibleProduct(products, sortBy, filters, search);
 
-  const handleClick = () => {
-    setCartalert(true);
-  };
+  // const handleClick = () => {
+  //   setCartalert(true);
+  // };
 
   const handleClose = (event: unknown) => {
     if (event === "clickaway") {
       return;
     }
     setCartalert(false);
+    //delete
+    setProducts(products);
+    setLoading(false);
   };
 
-  const addToCart = (product: ProductType) => {
-    // Add product to cart logic here
-    handleClick();
-  };
+  // const addToCart = (product: ProductType) => {
+  //   // Add product to cart logic here
+  //   handleClick();
+  // };
 
   return (
     <Box p={3} flexGrow={1}>
@@ -145,7 +150,16 @@ const Shop = ({ onClick }: Props) => {
       {/* ------------------------------------------- */}
       {/* Header Detail page */}
       {/* ------------------------------------------- */}
-      <Stack direction="row" justifyContent="space-between" pb={3} position="sticky" top={100} zIndex={1} bgcolor="background.paper">
+      <Stack 
+        style={{ margin: 'auto 20px' }} 
+        direction="row" 
+        justifyContent="space-between" 
+        alignItems="center" 
+        pb={3} 
+        position="sticky" 
+        top={100} 
+        zIndex={1} 
+      >
         {lgUp ? (
           <Typography variant="h5">Products</Typography>
         ) : (
@@ -161,19 +175,20 @@ const Shop = ({ onClick }: Props) => {
       {/* ------------------------------------------- */}
       {/* Page Listing product */}
       {/* ------------------------------------------- */}
-      <Grid container spacing={3}>
+      <Grid container spacing={3} style={{ marginTop: '70px', overflowY: 'auto', maxHeight: 'calc(100vh - 200px)' }}>
         {products.length > 0 ? (
           <>
             {products.map((product) => (
               <Grid
                 item
                 xs={12}
-                lg={4}
+                lg={3}
                 md={4}
                 sm={6}
                 display="flex"
                 alignItems="stretch"
                 key={product.id}
+                sx={{ xs: 377, sm: 'auto' }}
               >
                 {/* ------------------------------------------- */}
                 {/* Product Card */}
@@ -195,13 +210,20 @@ const Shop = ({ onClick }: Props) => {
                       component={Link}
                       to={`/shop/product/${product.id}`}
                     >
-                      <img src={product.photo} alt="img" width={250} height={268} style={{ width: "100%" }} />
+                      {/* <img src={product.photo} alt="img" width={250} height={268} style={{ width: "100%" }} /> */}
+                      <LazyLoadImage
+                        alt={product.title}
+                        effect="blur"
+                        src={product.photo}
+                        // width={250}
+                        // height={268}
+                        style={{ width: "auto" }} />
                     </Typography>
                     <Tooltip title="Add To Cart">
                       <Fab
                         size="small"
                         color="primary"
-                        onClick={() => addToCart(product)}
+                        onClick={() => {}}
                         sx={{
                           bottom: "75px",
                           right: "15px",

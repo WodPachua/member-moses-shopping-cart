@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import Logo from '../assets/logomymy.png';
+import Logo from '/images/logomymy.png';
 import { ShoppingCart } from '@mui/icons-material';
 import { Badge } from '@mui/material';
 

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import IMG1 from '../assets/img1.png'
+import IMG1 from '/images/img1.png'
 
 const Home = () => {
   return (
