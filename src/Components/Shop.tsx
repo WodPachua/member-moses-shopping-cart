@@ -21,17 +21,18 @@ import BlankCard from "./BlankCard";
 import { ProductType } from "./Types";
 // import Image from "next/image";
 // import axios from "../apiMock/axios";
-import ProductsData  from '../api/ProductsData'
+// import ProductsData  from '../api/ProductsData'
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 
 
 interface Props {
   onClick: (event: React.SyntheticEvent | Event) => void;
+  productsData: ProductType[];
 }
 
-const Shop = ({ onClick }: Props) => {
-  const [products, setProducts] = useState<ProductType[]>(ProductsData);
+const Shop = ({ onClick, productsData }: Props) => {
+  const [products, setProducts] = useState<ProductType[]>(productsData);
   const [isLoading, setLoading] = useState(false);
   const [cartalert, setCartalert] = useState(false);
 

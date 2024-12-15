@@ -5,12 +5,16 @@ import ChildCard from '../Shared/ChildCard';
 import ProductCarousel from './ProductCarousel';
 import ProductDetail from './ProductDetail';
 import ProductDesc from './ProductDesc';
-import ProductsData from '../../api/ProductsData';
+// import ProductsData from '../../api/ProductsData';
 import { ProductType } from '../Types';
 
-const Product = () => {
+interface ProductProps {
+  productsData: ProductType[];
+}
+
+const Product = ({ productsData }: ProductProps) => {
   const { productId } = useParams();
-  const product: ProductType | undefined = ProductsData.find((product) => product.id === parseInt(productId || '0'));
+  const product: ProductType | undefined = productsData.find((product) => product.id === parseInt(productId || '0'));
 
   if (!product) {
     return <Navigate to="/error" />;

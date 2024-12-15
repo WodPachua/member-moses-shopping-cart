@@ -9,11 +9,11 @@ import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 import BlankCard from "./BlankCard";
 import { ProductType } from "./Types";
-import ProductsData from "../api/ProductsData";
+// import ProductsData from "../api/ProductsData";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-const Trending = () => {
+const Trending = ({ productsData }: { productsData: ProductType[] }) => {
 
   const filterTrending = (products: ProductType[]) => {
     if (products) return products.filter((t) => t.rating >= 3);
@@ -22,7 +22,7 @@ const Trending = () => {
   };
 
   const Trendingproducts = (() =>
-    filterTrending(ProductsData)
+    filterTrending(productsData)
   );
 
   const [isLoading, setLoading] = useState(true);
