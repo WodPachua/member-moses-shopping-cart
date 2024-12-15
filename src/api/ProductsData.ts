@@ -17,6 +17,24 @@ const ProductsData = [
     qty: 1,
     colors: ["#1890FF"],
     photo: "/images/products/s1.jpg",
+    images: [
+      {
+        imgPath: "/images/products/s2.jpg",
+        id: 1,
+      },
+      {
+        imgPath: "/images/products/s3.jpg",
+        id: 2,
+      },
+      {
+        imgPath: "/images/products/s4.jpg",
+        id: 3,
+      },
+      {
+        imgPath: "/images/products/s5.jpg",
+        id: 4,
+      },
+    ],
     id: 1,
     created: sub(new Date(), { days: 8, hours: 6, minutes: 20 }),
     description: chance.paragraph({ sentences: 2 }),
@@ -34,6 +52,24 @@ const ProductsData = [
     qty: 1,
     colors: ["#1890FF", "#94D82D", "#FF4842"],
     photo: "/images/products/s2.jpg",
+    images: [
+      {
+        imgPath: "/images/products/s1.jpg",
+        id: 1,
+      },
+      {
+        imgPath: "/images/products/s3.jpg",
+        id: 2,
+      },
+      {
+        imgPath: "/images/products/s4.jpg",
+        id: 3,
+      },
+      {
+        imgPath: "/images/products/s5.jpg",
+        id: 4,
+      },
+    ],
     id: 2,
     created: sub(new Date(), { days: 10, hours: 8, minutes: 69 }),
     description: chance.paragraph({ sentences: 2 }),
@@ -51,6 +87,24 @@ const ProductsData = [
     qty: 1,
     colors: ["#FF4842", "#1890FF", "#94D82D"],
     photo: "/images/products/s3.jpg",
+    images: [
+      {
+        imgPath: "/images/products/s2.jpg",
+        id: 1,
+      },
+      {
+        imgPath: "/images/products/s1.jpg",
+        id: 2,
+      },
+      {
+        imgPath: "/images/products/s4.jpg",
+        id: 3,
+      },
+      {
+        imgPath: "/images/products/s5.jpg",
+        id: 4,
+      },
+    ],
     id: 3,
     created: sub(new Date(), { days: 8, hours: 6, minutes: 20 }),
     description: chance.paragraph({ sentences: 2 }),
@@ -68,6 +122,24 @@ const ProductsData = [
     qty: 1,
     colors: ["#1890FF", "#94D82D", "#FFC107"],
     photo: "/images/products/s4.jpg",
+    images: [
+      {
+        imgPath: "/images/products/s2.jpg",
+        id: 1,
+      },
+      {
+        imgPath: "/images/products/s3.jpg",
+        id: 2,
+      },
+      {
+        imgPath: "/images/products/s1.jpg",
+        id: 3,
+      },
+      {
+        imgPath: "/images/products/s5.jpg",
+        id: 4,
+      },
+    ],
     id: 4,
     created: sub(new Date(), { days: 4, hours: 9, minutes: 40 }),
     description: chance.paragraph({ sentences: 2 }),
@@ -85,6 +157,24 @@ const ProductsData = [
     qty: 1,
     colors: ["#00AB55", "#000000"],
     photo: "/images/products/s5.jpg",
+    images: [
+      {
+        imgPath: "/images/products/s2.jpg",
+        id: 1,
+      },
+      {
+        imgPath: "/images/products/s3.jpg",
+        id: 2,
+      },
+      {
+        imgPath: "/images/products/s4.jpg",
+        id: 3,
+      },
+      {
+        imgPath: "/images/products/s1.jpg",
+        id: 4,
+      },
+    ],
     id: 5,
     created: sub(new Date(), { days: 2, hours: 5, minutes: 50 }),
     description: chance.paragraph({ sentences: 2 }),
@@ -102,6 +192,24 @@ const ProductsData = [
     qty: 1,
     colors: ["#FFC0CB", "#FF4842"],
     photo: "/images/products/s6.jpg",
+    images: [
+      {
+        imgPath: "/images/products/s2.jpg",
+        id: 1,
+      },
+      {
+        imgPath: "/images/products/s3.jpg",
+        id: 2,
+      },
+      {
+        imgPath: "/images/products/s4.jpg",
+        id: 3,
+      },
+      {
+        imgPath: "/images/products/s5.jpg",
+        id: 4,
+      },
+    ],
     id: 6,
     created: sub(new Date(), { days: 2, hours: 9, minutes: 45 }),
     description: chance.paragraph({ sentences: 2 }),
@@ -119,6 +227,24 @@ const ProductsData = [
     qty: 1,
     colors: ["#FF4842", "#1890FF", "#94D82D"],
     photo: "/images/products/s7.jpg",
+    images: [
+      {
+        imgPath: "/images/products/s2.jpg",
+        id: 1,
+      },
+      {
+        imgPath: "/images/products/s3.jpg",
+        id: 2,
+      },
+      {
+        imgPath: "/images/products/s4.jpg",
+        id: 3,
+      },
+      {
+        imgPath: "/images/products/s5.jpg",
+        id: 4,
+      },
+    ],
     id: 7,
     created: sub(new Date(), { days: 6, hours: 10, minutes: 0 }),
     description: chance.paragraph({ sentences: 2 }),
@@ -136,6 +262,24 @@ const ProductsData = [
     qty: 1,
     colors: ["#1890FF", "#94D82D", "#FFC107"],
     photo: "/images/products/s8.jpg",
+    images: [
+      {
+        imgPath: "/images/products/s2.jpg",
+        id: 1,
+      },
+      {
+        imgPath: "/images/products/s3.jpg",
+        id: 2,
+      },
+      {
+        imgPath: "/images/products/s4.jpg",
+        id: 3,
+      },
+      {
+        imgPath: "/images/products/s5.jpg",
+        id: 4,
+      },
+    ],
     id: 8,
     created: sub(new Date(), { days: 7, hours: 5, minutes: 20 }),
     description: chance.paragraph({ sentences: 2 }),
@@ -153,6 +297,24 @@ const ProductsData = [
     qty: 1,
     colors: ["#00AB55", "#000000"],
     photo: "/images/products/s9.jpg",
+    images: [
+      {
+        imgPath: "/images/products/s2.jpg",
+        id: 1,
+      },
+      {
+        imgPath: "/images/products/s3.jpg",
+        id: 2,
+      },
+      {
+        imgPath: "/images/products/s4.jpg",
+        id: 3,
+      },
+      {
+        imgPath: "/images/products/s5.jpg",
+        id: 4,
+      },
+    ],
     id: 9,
     created: sub(new Date(), { days: 8, hours: 6, minutes: 20 }),
     description: chance.paragraph({ sentences: 2 }),
@@ -170,6 +332,24 @@ const ProductsData = [
     qty: 1,
     colors: ["#FFC0CB", "#FF4842"],
     photo: "/images/products/s10.jpg",
+    images: [
+      {
+        imgPath: "/images/products/s2.jpg",
+        id: 1,
+      },
+      {
+        imgPath: "/images/products/s3.jpg",
+        id: 2,
+      },
+      {
+        imgPath: "/images/products/s4.jpg",
+        id: 3,
+      },
+      {
+        imgPath: "/images/products/s5.jpg",
+        id: 4,
+      },
+    ],
     id: 10,
     created: sub(new Date(), { days: 6, hours: 6, minutes: 20 }),
     description: chance.paragraph({ sentences: 2 }),
@@ -187,6 +367,24 @@ const ProductsData = [
     qty: 1,
     colors: ["#FF4842", "#1890FF", "#94D82D"],
     photo: "/images/products/s11.jpg",
+    images: [
+      {
+        imgPath: "/images/products/s2.jpg",
+        id: 1,
+      },
+      {
+        imgPath: "/images/products/s3.jpg",
+        id: 2,
+      },
+      {
+        imgPath: "/images/products/s4.jpg",
+        id: 3,
+      },
+      {
+        imgPath: "/images/products/s5.jpg",
+        id: 4,
+      },
+    ],
     id: 11,
     created: sub(new Date(), { days: 1, hours: 6, minutes: 20 }),
     description: chance.paragraph({ sentences: 2 }),
@@ -204,6 +402,24 @@ const ProductsData = [
     qty: 1,
     colors: ["#1890FF", "#94D82D", "#FFC107"],
     photo: "/images/products/s12.jpg",
+    images: [
+      {
+        imgPath: "/images/products/s2.jpg",
+        id: 1,
+      },
+      {
+        imgPath: "/images/products/s3.jpg",
+        id: 2,
+      },
+      {
+        imgPath: "/images/products/s4.jpg",
+        id: 3,
+      },
+      {
+        imgPath: "/images/products/s5.jpg",
+        id: 4,
+      },
+    ],
     id: 12,
     created: sub(new Date(), { days: 9, hours: 6, minutes: 20 }),
     description: chance.paragraph({ sentences: 2 }),

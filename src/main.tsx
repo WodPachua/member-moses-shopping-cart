@@ -7,7 +7,7 @@ import Error from './Components/Error.tsx';
 import Home from './Components/Home.tsx';
 import Shop from './Components/Shop.tsx';
 import FAQS from './Components/FAQs.tsx';
-import Product from './Components/Product.tsx';
+import Product from './Components/ProductView/Product.tsx';
 
 const router = createBrowserRouter([
   {
@@ -21,15 +21,14 @@ const router = createBrowserRouter([
         errorElement: <Error />
       },
       {
-        path: "shop",
+        path: "browse",
         element: <Shop onClick={()=>{}}/>,
-        errorElement: <Error />,
-        children: [
-          {
-            path: "product/:id",
-            element: <Product />
-          }
-        ]
+        errorElement: <Error />
+      },
+      {
+        path: "product/:productId",
+        element: <Product />,
+        errorElement: <Error />
       },
       {
         path: "faqs",

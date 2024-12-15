@@ -208,15 +208,13 @@ const Shop = ({ onClick }: Props) => {
                   <BlankCard className="hoverCard">
                     <Typography
                       component={Link}
-                      to={`/shop/product/${product.id}`}
+                      to={`/product/${product.id}`}
                     >
                       {/* <img src={product.photo} alt="img" width={250} height={268} style={{ width: "100%" }} /> */}
                       <LazyLoadImage
                         alt={product.title}
                         effect="blur"
                         src={product.photo}
-                        // width={250}
-                        // height={268}
                         style={{ width: "auto" }} />
                     </Typography>
                     <Tooltip title="Add To Cart">
@@ -275,7 +273,7 @@ const Shop = ({ onClick }: Props) => {
           <>
             <Grid item xs={12} lg={12} md={12} sm={12}>
               <Box textAlign="center" mt={6}>
-                <img src={'../assets/empty-shopping-cart.svg'} alt="cart" width={200} />
+                <img src={'/images/empty-shopping-cart.svg'} alt="cart" width={200} />
                 <Typography variant="h2">There is no Product</Typography>
                 <Typography variant="h6" mb={3}>
                   The Product you are searching is no longer available.
