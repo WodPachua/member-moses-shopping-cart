@@ -34,6 +34,18 @@ const Shop = ({ onClick }: Props) => {
   const [products, setProducts] = useState<ProductType[]>(ProductsData);
   const [isLoading, setLoading] = useState(false);
   const [cartalert, setCartalert] = useState(false);
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(event.target.value);
+  };
+
+  const filteredProducts = products.filter((product) =>
+    product.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    product.category.some((cat) => cat.toLowerCase().includes(searchQuery.toLowerCase()))
+  );
+
   // const [filters, setFilters] = useState({
   //   category: "All",
   //   gender: "All",
@@ -168,7 +180,7 @@ const Shop = ({ onClick }: Props) => {
           </Fab>
         )}
         <Box>
-          <ProductSearch />
+          <ProductSearch onSearch={handleSearch} value={searchQuery}/>
         </Box>
       </Stack>
 
@@ -176,9 +188,9 @@ const Shop = ({ onClick }: Props) => {
       {/* Page Listing product */}
       {/* ------------------------------------------- */}
       <Grid container spacing={3} style={{ marginTop: '70px', overflowY: 'auto', maxHeight: 'calc(100vh - 200px)' }}>
-        {products.length > 0 ? (
+        {filteredProducts.length > 0 ? (
           <>
-            {products.map((product) => (
+            {filteredProducts.map((product) => (
               <Grid
                 item
                 xs={12}
@@ -272,19 +284,19 @@ const Shop = ({ onClick }: Props) => {
         ) : (
           <>
             <Grid item xs={12} lg={12} md={12} sm={12}>
-              <Box textAlign="center" mt={6}>
-                <img src={'/images/empty-shopping-cart.svg'} alt="cart" width={200} />
-                <Typography variant="h2">There is no Product</Typography>
+                <Box textAlign="center" mt={6} display="flex" flexDirection="column" alignItems="center">
+                <img src={'/images/empty-shopping-cart.svg'} alt="cart" width={300} />
+                <Typography variant="h2">No Hits 🎯</Typography>
                 <Typography variant="h6" mb={3}>
-                  The Product you are searching is no longer available.
+                  Ooops! The Product you are searching is no longer available.
                 </Typography>
                 <Button
-                  variant="contained"
-                  onClick={() => {}}
+                variant="contained"
+                onClick={() => setSearchQuery("")}
                 >
-                  Try Again
+                Clear
                 </Button>
-              </Box>
+                </Box>
             </Grid>
           </>
         )}

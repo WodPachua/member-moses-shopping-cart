@@ -12,7 +12,7 @@ const AlertCart = ({ handleClose, openCartAlert }: Props) => {
     <React.Fragment>
       <Snackbar
         open={openCartAlert}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         autoHideDuration={1000}
         onClose={handleClose}
       >
