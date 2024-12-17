@@ -27,11 +27,11 @@ import "react-lazy-load-image-component/src/effects/blur.css";
 
 
 interface Props {
-  onClick: (event: React.SyntheticEvent | Event) => void;
+  onClick?: (event: React.SyntheticEvent | Event) => void;
   productsData: ProductType[];
 }
 
-const Shop = ({ onClick, productsData }: Props) => {
+const Shop = ({ onClick = ()=>{}, productsData }: Props) => {
   const [products, setProducts] = useState<ProductType[]>(productsData);
   const [isLoading, setLoading] = useState(false);
   const [cartalert, setCartalert] = useState(false);

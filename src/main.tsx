@@ -6,9 +6,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Error from './Components/Error.tsx';
 import Home from './Components/Home.tsx';
 import Shop from './Components/Shop.tsx';
-import FAQS from './Components/FAQs.tsx';
 import Product from './Components/ProductView/Product.tsx';
 import axios from './api/axios';
+import Checkout from './Components/CartCheckout/CheckOut.tsx';
 
 const Main = () => {
   const [products, setProducts] = useState([]);
@@ -55,8 +55,8 @@ const Main = () => {
           errorElement: <Error />
         },
         {
-          path: "faqs",
-          element: <FAQS />,
+          path: "checkout",
+          element: <Checkout cart={products}/>,
           errorElement: <Error />
         }
       ]

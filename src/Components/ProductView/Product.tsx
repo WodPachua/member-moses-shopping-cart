@@ -34,7 +34,7 @@ const Product = ({ productsData }: ProductProps) => {
         </ChildCard>
       </Grid>
       <Grid item xs={12} sm={12} lg={12} >
-        <ProductDesc product={product} />
+        <ProductDesc />
       </Grid>
     </Grid>
   );

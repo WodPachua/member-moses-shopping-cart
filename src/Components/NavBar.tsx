@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import Logo from '/images/logomymy.png';
 import { ShoppingCart } from '@mui/icons-material';
 import { Badge } from '@mui/material';
@@ -22,13 +22,15 @@ const NavBar: React.FC<NavBarProps> = ({ toggleCart }) => {
         <NavLink to='/browse' className={({ isActive }) => (isActive ? 'text-lg text-[#3D5B59] font-semibold relative after:content-[""] after:absolute after:bg-orange-500 after:h-[2px] after:w-full after:left-0 after:bottom-0' : 'text-lg text-gray-700 relative after:content-[""] after:absolute after:bg-orange-500 after:h-[2px] after:w-0 after:left-0 after:bottom-0 hover:after:w-full transition-all duration-300')} >
           Catalogue
         </NavLink>
-        <NavLink to='/faqs' className={({ isActive }) => (isActive ? 'text-lg text-[#3D5B59] font-semibold relative after:content-[""] after:absolute after:bg-orange-500 after:h-[2px] after:w-full after:left-0 after:bottom-0' : 'text-lg text-gray-700 relative after:content-[""] after:absolute after:bg-orange-500 after:h-[2px] after:w-0 after:left-0 after:bottom-0 hover:after:w-full transition-all duration-300')} >
-          FAQs
+        <NavLink to='/checkout' className={({ isActive }) => (isActive ? 'text-lg text-[#3D5B59] font-semibold relative after:content-[""] after:absolute after:bg-orange-500 after:h-[2px] after:w-full after:left-0 after:bottom-0' : 'text-lg text-gray-700 relative after:content-[""] after:absolute after:bg-orange-500 after:h-[2px] after:w-0 after:left-0 after:bottom-0 hover:after:w-full transition-all duration-300')} >
+          Check-Out
         </NavLink>
       </nav>
+      <Link to='/checkout' className='transform -translate-y-1 cursor-pointer'>
       <Badge badgeContent={4} color="secondary" onClick={toggleCart}>
         <ShoppingCart color="action" sx={{ color: '#B99095', '&:hover': { color: '#a3777c' }, fontSize: 30 }} className='transform -translate-y-1 cursor-pointer'/>
       </Badge>
+      </Link>
     </header>
   );
 };
