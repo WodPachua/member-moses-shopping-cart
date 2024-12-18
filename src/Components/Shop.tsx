@@ -133,14 +133,14 @@ const Shop = ({ onClick = ()=>{}, productsData }: Props) => {
                       <Fab
                         size="small"
                         color="primary"
-                        onClick={() => {}}
+                        onClick={() => addToCart(product)}
                         sx={{
                           bottom: "75px",
                           right: "15px",
                           position: "absolute",
                         }}
                       >
-                        <IconBasket size="16" onClick={() => addToCart(product)}/>
+                        <IconBasket size="16"/>
                       </Fab>
                     </Tooltip>
                     <CardContent sx={{ p: 3, pt: 2 }}>
