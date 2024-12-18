@@ -9,6 +9,7 @@ import Shop from './Components/Shop.tsx';
 import Product from './Components/ProductView/Product.tsx';
 import axios from './api/axios';
 import Checkout from './Components/CartCheckout/CheckOut.tsx';
+import { CartProvider } from './Components/CartContext';
 
 const Main = () => {
   const [products, setProducts] = useState([]);
@@ -56,7 +57,7 @@ const Main = () => {
         },
         {
           path: "checkout",
-          element: <Checkout cart={products}/>,
+          element: <Checkout />,
           errorElement: <Error />
         }
       ]
@@ -65,7 +66,9 @@ const Main = () => {
 
   return (
     <StrictMode>
-      <RouterProvider router={router} />
+      <CartProvider>
+        <RouterProvider router={router} />
+      </CartProvider>
     </StrictMode>
   );
 };

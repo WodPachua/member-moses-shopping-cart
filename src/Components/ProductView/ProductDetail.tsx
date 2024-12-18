@@ -14,6 +14,7 @@ import { IconCheck, IconMinus, IconPlus } from "@tabler/icons-react";
 import AlertCart from "../AlertCart";
 import { ProductType } from '../Types';
 import { Link } from "react-router-dom";
+import { useCart } from '../CartContext';
 
 interface ProductDetailProps {
     product: ProductType;
@@ -21,6 +22,7 @@ interface ProductDetailProps {
 
 const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   const theme = useTheme();
+  const { dispatch } = useCart();
 
   const [scolor, setScolor] = useState(product ? product.colors[0] : "");
   const setColor = (e: React.SetStateAction<string>) => {
@@ -31,6 +33,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   const [cartalert, setCartalert] = useState(false);
 
   const handleClick = () => {
+    dispatch({ type: 'ADD_TO_CART', payload: product });
     setCartalert(true);
   };
 
@@ -114,7 +117,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
           <Grid container spacing={2} mt={3}>
             <Grid item xs={12} lg={4} md={6}>
               <Link to="/browse">
-                <Button color="primary" size="large" fullWidth variant="contained" onClick={handleClick}>
+                <Button color="primary" size="large" fullWidth variant="contained">
                     Back
                 </Button>
               </Link>

@@ -14,14 +14,22 @@ import Typography from '@mui/material/Typography';
 import {Link} from "react-router-dom";
 import { IconMinus, IconPlus, IconTrash } from "@tabler/icons-react";
 import { ProductType } from "../Types";
+import { useCart } from '../CartContext';
 
-const AddToCart = ({cart}: { cart: ProductType[] }) => {
-  
-  const Increase = (productId: number | string) => { };
+const AddToCart = ({ cart }: { cart: ProductType[] }) => {
+  const { dispatch } = useCart();
 
-  const Decrease = (productId: number | string) => { };
+  const Increase = (productId: number ) => {
+    dispatch({ type: 'INCREASE_QUANTITY', payload: productId });
+  };
 
-  const deleteCartItem = (productId: number | string) => { };
+  const Decrease = (productId: number ) => {
+    dispatch({ type: 'DECREASE_QUANTITY', payload: productId });
+  };
+
+  const deleteCartItem = (productId: number ) => {
+    dispatch({ type: 'REMOVE_FROM_CART', payload: productId });
+  };
 
   return (
     <Box>
@@ -33,18 +41,13 @@ const AddToCart = ({cart}: { cart: ProductType[] }) => {
                 <TableHead>
                   <TableRow>
                     <TableCell>Product</TableCell>
-
                     <TableCell align="left">Quantity</TableCell>
                     <TableCell align="right">Price</TableCell>
                   </TableRow>
                 </TableHead>
-
                 <TableBody>
                   {cart.map((product) => (
                     <TableRow key={product.id}>
-                      {/* ------------------------------------------- */}
-                      {/* Product Image & Title */}
-                      {/* ------------------------------------------- */}
                       <TableCell>
                         <Stack direction="row" alignItems="center" gap={2}>
                           <Avatar
@@ -66,7 +69,7 @@ const AddToCart = ({cart}: { cart: ProductType[] }) => {
                             <IconButton
                               size="small"
                               color="error"
-                              onClick={() => deleteCartItem(product.id)}
+                              onClick={() => deleteCartItem(Number(product.id))}
                             >
                               <IconTrash size="1rem" />
                             </IconButton>
@@ -81,20 +84,20 @@ const AddToCart = ({cart}: { cart: ProductType[] }) => {
                           aria-label="small button group"
                         >
                           <Button
-                            onClick={() => Decrease(product.id)}
+                            onClick={() => Decrease(Number(product.id))}
                             disabled={product.qty < 2}
                           >
                             <IconMinus stroke={1.5} size="0.8rem" />
                           </Button>
                           <Button>{product.qty}</Button>
-                          <Button onClick={() => Increase(product.id)}>
+                          <Button onClick={() => Increase(Number(product.id))}>
                             <IconPlus stroke={1.5} size="0.8rem" />
                           </Button>
                         </ButtonGroup>
                       </TableCell>
                       <TableCell align="right">
                         <Typography variant="h6">
-                          {product.price * product.qty}/=
+                          ${product.price * product.qty}
                         </Typography>
                       </TableCell>
                     </TableRow>

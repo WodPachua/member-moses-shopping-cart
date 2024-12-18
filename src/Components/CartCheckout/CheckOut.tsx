@@ -2,13 +2,11 @@ import { Box } from '@mui/material';
 import PageContainer from '../Shared/PageContainer';
 import Cart from './Cart';
 import ChildCard from '../Shared/ChildCard';
-import { ProductType } from '../Types';
+import { useCart } from '../CartContext';
 
-interface CheckoutProps {
-  cart: ProductType[];
-}
+const Checkout = () => {
+  const { state } = useCart();
 
-const Checkout = ({ cart }: CheckoutProps) => {
   return (
     <PageContainer title="Checkout" description="this is Checkout">
       {/* breadcrumb */}
@@ -17,7 +15,7 @@ const Checkout = ({ cart }: CheckoutProps) => {
         {/* Right part */}
         {/* ------------------------------------------- */}
         <Box p={3} flexGrow={1}>
-          <Cart cart={cart}/>
+          <Cart cart={state.cart}/>
         </Box>
       </ChildCard>
     </PageContainer>

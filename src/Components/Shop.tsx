@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { filter, orderBy } from "lodash";
 import Box from '@mui/material/Box'
 import Button from '@mui/material/Button'
 import CardContent from '@mui/material/CardContent'
@@ -8,22 +7,17 @@ import Grid from '@mui/material/Grid'
 import Rating from '@mui/material/Rating'
 import Skeleton from '@mui/material/Skeleton'
 import Stack from '@mui/material/Stack'
-// import { Theme } from '@mui/material/styles';
 import Tooltip from '@mui/material/Tooltip'
 import Typography from '@mui/material/Typography'
-// import useMediaQuery from '@mui/material/useMediaQuery'
 import { Link } from "react-router-dom";
 import ProductSearch from "./ProductSearch";
 import { IconBasket, IconMenu2 } from "@tabler/icons-react";
 import AlertCart from "./AlertCart";
-// import emptyCart from "/public/images/products/empty-shopping-cart.svg";
 import BlankCard from "./BlankCard";
 import { ProductType } from "./Types";
-// import Image from "next/image";
-// import axios from "../apiMock/axios";
-// import ProductsData  from '../api/ProductsData'
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { useCart } from './CartContext';
 
 
 interface Props {
@@ -32,6 +26,7 @@ interface Props {
 }
 
 const Shop = ({ onClick = ()=>{}, productsData }: Props) => {
+  const { dispatch } = useCart();
   const [products, setProducts] = useState<ProductType[]>(productsData);
   const [isLoading, setLoading] = useState(false);
   const [cartalert, setCartalert] = useState(false);
@@ -47,118 +42,18 @@ const Shop = ({ onClick = ()=>{}, productsData }: Props) => {
     product.category.some((cat) => cat.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
-  // const [filters, setFilters] = useState({
-  //   category: "All",
-  //   gender: "All",
-  //   color: "All",
-  //   price: "All"
-  // });
-  // const [sortBy, setSortBy] = useState("newest");
-  // const [search, setSearch] = useState("");
-
-  // const lgUp = useMediaQuery((theme: Theme) => theme.breakpoints.up("lg"));
   const lgUp = true;
-
-  // useEffect(() => {
-  //   const fetchProducts = async () => {
-  //     try {
-  //       const response = await axios.get("/api/products");
-  //       setProducts(response.data);
-  //     } catch (error) {
-  //       console.error("Error fetching products:", error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   fetchProducts();
-  // }, []);
-
-  // const getVisibleProduct = (
-  //   products: ProductType[],
-  //   sortBy: string,
-  //   filters: unknown,
-  //   search: string
-  // ) => {
-  //   // SORT BY
-  //   if (sortBy === "newest") {
-  //     products = orderBy(products, ["created"], ["desc"]);
-  //   }
-  //   if (sortBy === "priceDesc") {
-  //     products = orderBy(products, ["price"], ["desc"]);
-  //   }
-  //   if (sortBy === "priceAsc") {
-  //     products = orderBy(products, ["price"], ["asc"]);
-  //   }
-  //   if (sortBy === "discount") {
-  //     products = orderBy(products, ["discount"], ["desc"]);
-  //   }
-
-  //   // FILTER PRODUCTS
-  //   if (filters.category !== "All") {
-  //     products = products.filter((_product) =>
-  //       _product.category.includes(filters.category)
-  //     );
-  //   }
-
-  //   //FILTER PRODUCTS BY GENDER
-  //   if (filters.gender !== "All") {
-  //     products = filter(
-  //       products,
-  //       (_product) => _product.gender === filters.gender
-  //     );
-  //   }
-
-  //   //FILTER PRODUCTS BY COLOR
-  //   if (filters.color !== "All") {
-  //     products = products.filter((_product) =>
-  //       _product.colors.includes(filters.color)
-  //     );
-  //   }
-
-  //   //FILTER PRODUCTS BY Search
-  //   if (search !== "") {
-  //     products = products.filter((_product) =>
-  //       _product.title.toLocaleLowerCase().includes(search.toLocaleLowerCase())
-  //     );
-  //   }
-
-  //   //FILTER PRODUCTS BY Price
-  //   if (filters.price !== "All") {
-  //     const minMax = filters.price ? filters.price.split("-") : "";
-  //     products = products.filter((_product) =>
-  //       filters.price
-  //         ? _product.price >= minMax[0] && _product.price <= minMax[1]
-  //         : true
-  //     );
-  //   }
-
-  //   return products;
-  // };
-
-  // const visibleProducts = getVisibleProduct(products, sortBy, filters, search);
-
-  // const handleClick = () => {
-  //   setCartalert(true);
-  // };
 
   const handleClose = (event: unknown) => {
     if (event === "clickaway") {
       return;
     }
     setCartalert(false);
-    //delete
-    setProducts(products);
-    setLoading(false);
   };
 
-  // const addToCart = (product: ProductType) => {
-  //   // Add product to cart logic here
-  //   handleClick();
-  // };
-
-  const handleClick = () => {
-    setCartalert(true);
+  const addToCart = (product: ProductType) => {
+      setCartalert(true);
+      dispatch({ type: 'ADD_TO_CART', payload: product });
   };
 
   return (
@@ -245,7 +140,7 @@ const Shop = ({ onClick = ()=>{}, productsData }: Props) => {
                           position: "absolute",
                         }}
                       >
-                        <IconBasket size="16" onClick={handleClick}/>
+                        <IconBasket size="16" onClick={() => addToCart(product)}/>
                       </Fab>
                     </Tooltip>
                     <CardContent sx={{ p: 3, pt: 2 }}>

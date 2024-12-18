@@ -12,13 +12,14 @@ import SecondStep from './SecondStep';
 import ThirdStep from './ThirdStep';
 import FinalStep from './FinalStep';
 import { ProductType } from '../Types';
+import { useCart } from '../CartContext';
 
 interface CartProps {
   cart: ProductType[];
 }
 
 const Cart: React.FC<CartProps> = ({ cart }) => {
-  const checkout = cart.slice(0, 3);
+  const { dispatch } = useCart();
   const steps = ['Cart', 'Billing & address', 'Payment'];
   const [activeStep, setActiveStep] = React.useState(0);
   const handleNext = () => {
@@ -32,7 +33,7 @@ const Cart: React.FC<CartProps> = ({ cart }) => {
     setActiveStep(0);
   };
 
-  const total = sum(checkout.map((product: ProductType) => product.price * product.qty));
+  const total = sum(cart.map((product: ProductType) => product.price * product.qty));
   const Discount = Math.round(total * (5 / 100));
 
   return (
@@ -49,9 +50,9 @@ const Cart: React.FC<CartProps> = ({ cart }) => {
         {activeStep === 0 ? (
           <>
             <Box my={3}>
-              <AddToCart cart={checkout}/>
+              <AddToCart cart={cart}/>
             </Box>
-            {checkout.length > 0 ? (
+            {cart.length > 0 ? (
               <>
                 {/* ------------------------------------------- */}
                 {/* Cart Total */}

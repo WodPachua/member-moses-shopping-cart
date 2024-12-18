@@ -2,12 +2,15 @@ import { Link, NavLink } from 'react-router-dom';
 import Logo from '/images/logomymy.png';
 import { ShoppingCart } from '@mui/icons-material';
 import { Badge } from '@mui/material';
+import { useCart } from './CartContext';
 
 interface NavBarProps {
   toggleCart: () => void;
 }
 
 const NavBar: React.FC<NavBarProps> = ({ toggleCart }) => {
+  const { state } = useCart();
+  const cartCount = state.cart.reduce((acc, item) => acc + item.qty, 0);
 
   return (
     <header className="fixed top-0 left-0 w-full z-50 px-16 py-2 flex justify-between items-center bg-[#FFF6DC] shadow-md">
@@ -29,7 +32,7 @@ const NavBar: React.FC<NavBarProps> = ({ toggleCart }) => {
         </NavLink>
       </nav>
       <Link to='/checkout' className='transform -translate-y-1 cursor-pointer'>
-      <Badge badgeContent={4} color="secondary" onClick={toggleCart}>
+      <Badge badgeContent={cartCount} color="secondary" onClick={toggleCart}>
         <ShoppingCart color="action" sx={{ color: '#B99095', '&:hover': { color: '#a3777c' }, fontSize: 30 }} className='transform -translate-y-1 cursor-pointer'/>
       </Badge>
       </Link>

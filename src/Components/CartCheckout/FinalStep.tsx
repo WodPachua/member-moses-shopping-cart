@@ -1,8 +1,17 @@
+import { useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
+import { useCart } from '../CartContext';
+
 
 
 const FinalStep = () => {
+  const { dispatch } = useCart();
+
+  useEffect(() => {
+    dispatch({ type: 'RESET_CART', payload: 0 });
+  }, [dispatch]);
+
   return (
     <>
       {/* <Box my={3}> */}

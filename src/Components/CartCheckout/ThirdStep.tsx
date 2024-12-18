@@ -27,7 +27,7 @@ const Delivery: deliveryType[] = [
   },
   {
     id: 2,
-    title: "Fast delivery (8,000/=)",
+    title: "Fast delivery (80$)",
     description: "Delivered within 2 days from now",
   },
 ];
