@@ -33,7 +33,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product }) => {
   const [cartalert, setCartalert] = useState(false);
 
   const handleClick = () => {
-    dispatch({ type: 'ADD_TO_CART', payload: product });
+    dispatch({ type: 'ADD_TO_CART', payload: { ...product, qty: count } });
     setCartalert(true);
   };
 

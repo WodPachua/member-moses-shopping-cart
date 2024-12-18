@@ -108,7 +108,7 @@ const AddToCart = ({ cart }: { cart: ProductType[] }) => {
           </Box>
         </>
       ) : (
-        <Box textAlign="center" mb={3}>
+        <Box display="flex" flexDirection="column" alignItems="center" mb={3}>
           <img src={'/images/empty-shopping-cart.svg'} alt="cart" width={200} />
           <Typography variant="h5" mb={2}>
             Cart is Empty

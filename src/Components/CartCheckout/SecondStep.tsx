@@ -26,7 +26,7 @@ interface Props {
 const SecondStep = ({ nexStep }: Props) => {
   return (
     <>
-      <Grid container spacing={3} mb={3} mt={1}>
+      <Grid container spacing={3} mb={3} mt={1} justifyContent="center">
         {Myaddress.map((address) => (
           <Grid item lg={4} xs={12} key={address.id}>
             <Paper variant="outlined" sx={{ p: 3, backgroundColor: 'transparent' }}>
