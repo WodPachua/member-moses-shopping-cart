@@ -27,8 +27,8 @@ interface Props {
 
 const Shop = ({ onClick = ()=>{}, productsData }: Props) => {
   const { dispatch } = useCart();
-  const [products, setProducts] = useState<ProductType[]>(productsData);
-  const [isLoading, setLoading] = useState(false);
+  const [products, ] = useState<ProductType[]>(productsData);
+  const [isLoading, ] = useState(false);
   const [cartalert, setCartalert] = useState(false);
 
   const [searchQuery, setSearchQuery] = useState("");
