@@ -12,14 +12,12 @@ import SecondStep from './SecondStep';
 import ThirdStep from './ThirdStep';
 import FinalStep from './FinalStep';
 import { ProductType } from '../Types';
-import { useCart } from '../CartContext';
 
 interface CartProps {
   cart: ProductType[];
 }
 
 const Cart: React.FC<CartProps> = ({ cart }) => {
-  const { dispatch } = useCart();
   const steps = ['Cart', 'Billing & address', 'Payment'];
   const [activeStep, setActiveStep] = React.useState(0);
   const handleNext = () => {

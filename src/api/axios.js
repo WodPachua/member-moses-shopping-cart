@@ -2,7 +2,7 @@ import AxiosMockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import ProductsData from "./ProductsData";
 
-const mock = new AxiosMockAdapter(axios, { delayResponse: 500 });
+const mock = new AxiosMockAdapter(axios, { delayResponse: 0 });
 
 mock.onGet("/api/products").reply(() => {
   return [200, ProductsData];

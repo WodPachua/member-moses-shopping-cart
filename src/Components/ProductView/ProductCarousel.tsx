@@ -7,24 +7,22 @@ import "./Carousel.css";
 import { ProductType } from '../Types';
 
 interface ProductCarouselProps {
-    product: ProductType;
-  }  
+  product: ProductType;
+}
 
 const ProductCarousel: React.FC<ProductCarouselProps> = ({ product }) => {
-  const [state, setState] = React.useState({ nav1: null, nav2: null });
-  const slider1 = useRef();
-  const slider2 = useRef();
+  const [nav1, setNav1] = React.useState<Slider | null>(null);
+  const [nav2, setNav2] = React.useState<Slider | null>(null);
+  const slider1 = useRef<Slider | null>(null);
+  const slider2 = useRef<Slider | null>(null);
 
   const getProductImage = product ? product.photo : "/images/products/s1.jpg";
 
   useEffect(() => {
-    setState({
-      nav1: slider1.current,
-      nav2: slider2.current,
-    });
+    setNav1(slider1.current);
+    setNav2(slider2.current);
   }, []);
 
-  const { nav1, nav2 } = state;
   const settings = {
     focusOnSelect: true,
     infinite: true,
@@ -39,7 +37,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ product }) => {
 
   return (
     <Box>
-      <Slider asNavFor={nav2} ref={slider => (slider1.current = slider)}>
+      <Slider asNavFor={nav2 ?? undefined} ref={slider => (slider1.current = slider)}>
         <Box>
           <img
             src={getProductImage}
@@ -62,7 +60,7 @@ const ProductCarousel: React.FC<ProductCarouselProps> = ({ product }) => {
         ))}
       </Slider>
       <Slider
-        asNavFor={nav1}
+        asNavFor={nav1 ?? undefined}
         ref={slider => (slider2.current = slider)}
         {...settings}
       >

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Box from '@mui/material/Box';
 import CardContent from '@mui/material/CardContent';
 import Rating from '@mui/material/Rating';
@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 import Slider from "react-slick";
 import BlankCard from "./BlankCard";
 import { ProductType } from "./Types";
-// import ProductsData from "../api/ProductsData";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
@@ -108,7 +107,7 @@ const Trending = ({ productsData }: { productsData: ProductType[] }) => {
   );
 };
 
-const CustomNextArrow = (props) => {
+const CustomNextArrow = (props: any) => {
   const { className, style, onClick } = props;
   return (
     <div
@@ -119,7 +118,7 @@ const CustomNextArrow = (props) => {
   );
 };
 
-const CustomPrevArrow = (props) => {
+const CustomPrevArrow = (props: any) => {
   const { className, style, onClick } = props;
   return (
     <div

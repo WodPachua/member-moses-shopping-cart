@@ -2,7 +2,6 @@
   "name": "member-moses-shopping-cart",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build --watch",
@@ -64,6 +63,7 @@
     "@types/uuid": "^10.0.0",
     "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
+    "cypress": "^13.17.0",
     "eslint": "^9.13.0",
     "eslint-config-next": "latest",
     "eslint-plugin-react-hooks": "^5.0.0",
