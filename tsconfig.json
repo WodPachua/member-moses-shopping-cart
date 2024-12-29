@@ -1,7 +1,30 @@
 {
   "files": [],
   "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+    {
+      "path": "./tsconfig.app.json"
+    },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
+  "compilerOptions": {
+    "target": "ESNext",
+    // "module": "NodeNext",
+    // "moduleResolution": "NodeNext"
+    "module": "CommonJS",
+    "lib": [
+      "ESNext",
+      "DOM"
+    ],
+    "jsx": "react",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "src",
+    "cypress"
   ]
 }
