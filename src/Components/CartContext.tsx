@@ -23,12 +23,9 @@ const CartContext = createContext<{
 });
 
 const cartReducer = (state: CartState, action: CartAction): CartState => {
-
-    const existingProduct = state.cart.find((item) => item.id === (action.payload as ProductType).id);
-
   switch (action.type) {
-    case 'ADD_TO_CART':
-      
+    case 'ADD_TO_CART': {
+      const existingProduct = state.cart.find((item) => item.id === (action.payload as ProductType).id);
       if (existingProduct) {
         return {
           ...state,
@@ -41,6 +38,7 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
         ...state,
         cart: [...state.cart, { ...(action.payload as ProductType), qty: (action.payload as ProductType).qty }],
       };
+    }
     case 'REMOVE_FROM_CART':
       return {
         ...state,
@@ -61,10 +59,10 @@ const cartReducer = (state: CartState, action: CartAction): CartState => {
         ).filter((item) => item.qty > 0),
       };
     case 'RESET_CART':
-        return {
-            ...state,
-            cart: [],
-        };
+      return {
+        ...state,
+        cart: [],
+      };
     default:
       return state;
   }
@@ -81,3 +79,5 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
 };
 
 export const useCart = () => useContext(CartContext);
+export { cartReducer };
+export type { CartState, CartAction };
